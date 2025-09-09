@@ -1,0 +1,1 @@
+-- (Toàn bộ nội dung schema.sql như trên, tạo bảng, dữ liệu mẫu user, categories, products, promotions, ...)
