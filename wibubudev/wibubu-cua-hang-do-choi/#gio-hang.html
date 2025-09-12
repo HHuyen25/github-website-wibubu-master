@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Wibubu - Cửa hàng thời trang</title>
+    <meta name="description" content="Wibubu - Cửa hàng thời trang trực tuyến với phong cách hiện đại và giá cả hợp lý">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <!-- Header với navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="#home">wibubu</a>
+                </div>
+
+                <nav class="nav" id="main-nav">
+                    <a href="#home">Trang chủ</a>
+                    <a href="#gioi-thieu">Giới thiệu</a>
+                    <a href="#san-pham">Sản phẩm</a>
+                    <a href="#danh-muc">Danh mục</a>
+                    <a href="#khuyen-mai">Khuyến mãi</a>
+                    <a href="#gio-hang">Giỏ hàng <span id="cart-count">0</span></a>
+                    <a href="#dang-nhap" id="auth-link">Đăng nhập</a>
+                </nav>
+
+                <div class="header-controls">
+                    <!-- Search box -->
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Tìm sản phẩm...">
+                        <button type="button" id="search-btn">🔍</button>
+                    </div>
+
+                    <!-- Theme controls -->
+                    <div class="theme-controls">
+                        <button type="button" id="theme-toggle">🌞</button>
+                        <div class="brightness-control">
+                            <label for="brightness-slider">Độ sáng:</label>
+                            <input type="range" id="brightness-slider" min="0.6" max="1.4" step="0.1" value="1">
+                        </div>
+                    </div>
+
+                    <!-- Mobile menu toggle -->
+                    <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="main" id="main-content">
+        <!-- Trang chủ -->
+        <section data-route="home" class="section home-section">
+            <div class="hero">
+                <div class="container">
+                    <h1>Chào mừng đến với Wibubu</h1>
+                    <p>Khám phá bộ sưu tập thời trang hiện đại và phong cách</p>
+                    <button type="button" class="btn btn-gradient" onclick="location.hash='#san-pham'">Mua sắm ngay</button>
+                </div>
+            </div>
+
+            <div class="featured-products">
+                <div class="container">
+                    <h2>Sản phẩm nổi bật</h2>
+                    <div class="product-grid" id="featured-products-grid">
+                        <!-- Sản phẩm nổi bật sẽ được load bằng JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Giới thiệu -->
+        <section data-route="gioi-thieu" class="section about-section hidden">
+            <div class="container">
+                <h1>Giới thiệu về Wibubu</h1>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Thương hiệu thời trang hiện đại</h2>
+                        <p>Wibubu là thương hiệu thời trang trẻ trung, năng động, mang đến những sản phẩm chất lượng cao với thiết kế độc đáo và phong cách hiện đại.</p>
+                        <p>Chúng tôi cam kết mang đến cho khách hàng những trải nghiệm mua sắm tuyệt vời nhất với dịch vụ chăm sóc khách hàng chu đáo và chính sách đổi trả linh hoạt.</p>
+                        <ul>
+                            <li>✨ Thiết kế độc quyền, phong cách hiện đại</li>
+                            <li>🌟 Chất lượng cao, giá cả hợp lý</li>
+                            <li>🚚 Giao hàng nhanh chóng toàn quốc</li>
+                            <li>💝 Dịch vụ khách hàng 24/7</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <div class="placeholder-image">
+                            <span>Hình ảnh thương hiệu Wibubu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sản phẩm -->
+        <section data-route="san-pham" class="section products-section hidden">
+            <div class="container">
+                <h1>Sản phẩm</h1>
+
+                <div class="products-filters">
+                    <div class="filter-row">
+                        <select id="category-filter">
+                            <option value="">Tất cả danh mục</option>
+                        </select>
+
+                        <select id="sort-filter">
+                            <option value="new">Mới nhất</option>
+                            <option value="price_asc">Giá tăng dần</option>
+                            <option value="price_desc">Giá giảm dần</option>
+                        </select>
+
+                        <div class="price-range">
+                            <input type="number" id="min-price" placeholder="Giá từ">
+                            <input type="number" id="max-price" placeholder="Giá đến">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="products-grid" id="products-grid">
+                    <!-- Sản phẩm sẽ được load bằng JS -->
+                </div>
+
+                <div class="loading-skeleton" id="products-loading">
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Danh mục -->
+        <section data-route="danh-muc" class="section categories-section hidden">
+            <div class="container">
+                <h1>Danh mục sản phẩm</h1>
+                <div class="categories-grid" id="categories-grid">
+                    <!-- Danh mục sẽ được load bằng JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Khuyến mãi -->
+        <section data-route="khuyen-mai" class="section promotions-section hidden">
+            <div class="container">
+                <h1>Chương trình khuyến mãi</h1>
+                <div class="promotions-grid" id="promotions-grid">
+                    <!-- Khuyến mãi sẽ được load bằng JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Chi tiết sản phẩm -->
+        <section data-route="chi-tiet" class="section product-detail-section hidden">
+            <div class="container">
+                <div class="product-detail" id="product-detail">
+                    <!-- Chi tiết sản phẩm sẽ được load bằng JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Giỏ hàng -->
+        <section data-route="gio-hang" class="section cart-section hidden">
+            <div class="container">
+                <h1>Giỏ hàng của bạn</h1>
+                <div class="cart-content" id="cart-content">
+                    <!-- Nội dung giỏ hàng sẽ được load bằng JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Thanh toán -->
+        <section data-route="thanh-toan" class="section checkout-section hidden">
+            <div class="container">
+                <div class="checkout-content" id="checkout-content">
+                    <!-- Nội dung thanh toán sẽ được load bằng JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Xác nhận đơn hàng -->
+        <section data-route="don-hang" class="section order-confirmation-section hidden">
+            <div class="container">
+                <div class="order-confirmation-content" id="order-confirmation-content">
+                    <!-- Nội dung xác nhận đơn hàng sẽ được load bằng JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Đăng nhập -->
+        <section data-route="dang-nhap" class="section auth-section hidden">
+            <div class="container">
+                <div class="auth-forms">
+                    <div class="auth-form" id="login-form">
+                        <h2>Đăng nhập</h2>
+                        <form id="login-form-element">
+                            <div class="form-group">
+                                <input type="email" id="login-email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="login-password" placeholder="Mật khẩu" required>
+                            </div>
+                            <button type="submit" class="btn btn-gradient">Đăng nhập</button>
+                        </form>
+                        <p>Chưa có tài khoản? <a href="#dang-ky">Đăng ký ngay</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Đăng ký -->
+        <section data-route="dang-ky" class="section auth-section hidden">
+            <div class="container">
+                <div class="auth-forms">
+                    <div class="auth-form" id="register-form">
+                        <h2>Đăng ký</h2>
+                        <form id="register-form-element">
+                            <div class="form-group">
+                                <input type="text" id="register-name" placeholder="Họ và tên" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="register-email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="register-password" placeholder="Mật khẩu" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="register-password-confirm" placeholder="Xác nhận mật khẩu" required>
+                            </div>
+                            <button type="submit" class="btn btn-gradient">Đăng ký</button>
+                        </form>
+                        <p>Đã có tài khoản? <a href="#dang-nhap">Đăng nhập</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Wibubu. Tất cả các quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/components.js"></script>
+</body>
+
+</html>
