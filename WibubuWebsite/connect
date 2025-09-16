@@ -1,0 +1,9 @@
+modules = ["php-8.2"]
+[agent]
+expertMode = true
+
+[workflows]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
