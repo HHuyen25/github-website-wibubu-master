@@ -1,0 +1,134 @@
+Hãy tạo một website thương mại điện tử tên Wibubu với các yêu cầu sau:
+
+1. Thiết kế giao diện & bố cục
+
+Bố cục lấy cảm hứng từ website Mykingdom (trang chủ, menu, banner, danh mục, khuyến mãi, sản phẩm nổi bật, footer).
+
+Màu chủ đạo: Shy Rainbow (gam pastel nhiều màu nhẹ).
+
+Thiết kế hiện đại, tối ưu trải nghiệm người dùng, hỗ trợ responsive.
+
+2. Chức năng chính
+
+Chế độ ngày/đêm (Dark/Light mode).
+
+Danh mục sản phẩm (phân loại theo nhóm hàng).
+
+Xem chi tiết sản phẩm (ảnh, mô tả, giá, đánh giá).
+
+Chương trình khuyến mãi (giảm giá, flash sale).
+
+Tìm kiếm sản phẩm (gợi ý theo tên/danh mục).
+
+Giỏ hàng (thêm, xóa, chỉnh số lượng).
+
+Thanh toán (checkout, xác nhận đơn hàng).
+
+Đăng nhập / Đăng ký (tài khoản khách hàng).
+
+Trang Giới thiệu (giới thiệu thương hiệu Wibubu).
+
+Chatbox trực tuyến (tư vấn hỗ trợ, lưu lịch sử chat trong DB).
+
+Có thể chuyển tag (routing) theo đúng các chức năng thông qua menu và link nội bộ.
+
+3. Công nghệ sử dụng
+
+Frontend: HTML, CSS, JavaScript.
+
+Backend: PHP (Laravel Framework).
+
+Cơ sở dữ liệu: MySQL.
+
+4. Hệ thống phân quyền
+
+Admin: quản lý toàn bộ hệ thống (sản phẩm, danh mục, khuyến mãi, tài khoản, chatbox).
+
+Nhân viên bán hàng: quản lý đơn hàng, chatbox hỗ trợ khách hàng.
+
+Khách hàng: xem sản phẩm, giỏ hàng, thanh toán, chat với nhân viên.
+
+✅ Cấu trúc database (MySQL) gợi ý
+Bảng users (quản lý tài khoản)
+id (PK)  
+username  
+password  
+email  
+role (admin / staff / customer)  
+created_at  
+updated_at
+
+Bảng products (sản phẩm)
+id (PK)  
+name  
+description  
+price  
+stock  
+category_id (FK -> categories.id)  
+image_url  
+created_at  
+updated_at
+
+Bảng categories (danh mục sản phẩm)
+id (PK)  
+name  
+description  
+created_at  
+updated_at
+
+Bảng promotions (khuyến mãi)
+id (PK)  
+title  
+description  
+discount_percent  
+start_date  
+end_date  
+product_id (FK -> products.id)
+
+Bảng orders (đơn hàng)
+id (PK)  
+user_id (FK -> users.id)  
+total_amount  
+status (pending / confirmed / shipped / completed / cancelled)  
+created_at  
+updated_at
+
+Bảng order_items (chi tiết đơn hàng)
+id (PK)  
+order_id (FK -> orders.id)  
+product_id (FK -> products.id)  
+quantity  
+price
+
+Bảng chatbox (tin nhắn hỗ trợ khách hàng)
+id (PK)  
+sender_id (FK -> users.id)  
+receiver_id (FK -> users.id)  
+message  
+created_at
+
+✅ Sơ đồ phân quyền (Role-based Access Control – RBAC)
+
+Admin:
+
+CRUD sản phẩm, danh mục, khuyến mãi.
+
+Quản lý tài khoản người dùng.
+
+Xem & quản lý lịch sử chat.
+
+Nhân viên bán hàng (Staff):
+
+Quản lý đơn hàng (duyệt, cập nhật trạng thái).
+
+Trả lời chatbox khách hàng.
+
+Khách hàng (Customer):
+
+Xem sản phẩm, tìm kiếm.
+
+Thêm vào giỏ hàng, thanh toán.
+
+Chat với nhân viên.
+
+Quản lý tài khoản cá nhân.
